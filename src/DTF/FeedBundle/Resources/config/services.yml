@@ -1,4 +1,0 @@
-services:
-#    dtf_feed.example:
-#        class: DTF\FeedBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,3 +1,0 @@
-dtf_feed_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: DTFFeedBundle:Default:index }
