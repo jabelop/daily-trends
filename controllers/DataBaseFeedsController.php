@@ -1,5 +1,5 @@
 <?php
-require_once "../models/Feed.php";
+require_once ("models/Feed.php");
 
 class DataBaseFeedsController {
 
@@ -20,19 +20,19 @@ class DataBaseFeedsController {
 
     // public methods for pass data to the index controller
 
-    public getFeeds()
+    public function getFeeds()
     {
         return $this->feeds;
     }
 
-    public getNumFeeds()
+    public function getNumFeeds()
     {
         return $this->numFeeds;
     }
 
     // private method for feeds intialitation
 
-    private setFeeds()
+    private function setFeeds()
     {
         $this->feeds    = $this->feedEntity->getFeeds();
         $this->numFeeds = count($this->feeds);

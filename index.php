@@ -1,4 +1,4 @@
 <?php
-require_once("db/db.php");
-require_once("controllers/indexController");
+require_once("controllers/IndexController.php");
+$controller = new IndexController();
 ?>

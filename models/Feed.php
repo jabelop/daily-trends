@@ -1,5 +1,5 @@
 <?php
-require_once "../db/db.php";
+require_once ("db/db.php");
 
 class Feed{
     private $db;
@@ -18,18 +18,18 @@ class Feed{
 
     public function __construct(){
         $this->db=Conectar::conectaDb();
-        $this->feedsList=array();
-        $this->tabla = "daily.Feeds";
+        $this->feedsList = array();
+        $this->tabla     = "Daily.Feeds";
     }
 
 
     //getter methods
     public function getFeeds(){
         $resultado = $this->db->query("SELECT * FROM $this->tabla");
-            foreach ($resultado as $value) {
-                $this->feedsList[] = $value;
-            }
-            return $this->feedsList;
+        foreach ($resultado as $value) {
+            $this->feedsList[] = $value;
+        }
+        return $this->feedsList;
     }
 
     public function getId(){

@@ -17,21 +17,21 @@ require_once('DataBaseFeedsController.php');
 
       public function __construct()
       {
-        $this->paisFeedsController      = new PaisFeedsController();
-        $this->mundoController          = new MundoFeedsController();
-        $this->$dataBaseFeedsController = new DataBaseFeedsController();
+        $this->paisFeedsController           = new PaisFeedsController();
+        $this->mundoFeedsController          = new MundoFeedsController();
+        $this->dataBaseFeedsController       = new DataBaseFeedsController();
 
         $this->paisFeeds      =  array();
         $this->mundoFeeds     =  array();
-        $this->$dataBaseFeeds =  array();
+        $this->dataBaseFeeds =  array();
 
         $this->numDataBaseFeeds = 0;
 
-        $this->setDataBaseFeeds();
-        $this->setPaisFeeds();
-        $this->setMundoFeeds();
+        // $this->setDataBaseFeeds();
+        // $this->setPaisFeeds();
+        // $this->setMundoFeeds();
 
-        loadView();
+        $this->loadView();
       }
 
       // public methods for pass the data to the view
@@ -56,26 +56,26 @@ require_once('DataBaseFeedsController.php');
         return $this->mundoFeeds;
       }
 
-      public loadView()
+      public function loadView()
       {
-         require_once('../views/index.phtml');  
+         require_once('views/index.phtml');
       }
 
 
 
       //private methods for get the data from the controllers
 
-      private setDataBaseFeeds()
+      private function setDataBaseFeeds()
       {
         $this->dataBaseFeeds    = $this->dataBaseFeedsController->getFeeds();
         $this->numDataBaseFeeds = $this->dataBaseFeedsController->getNumFeeds();
       }
 
-      private setPaisFeeds() {
+      private function setPaisFeeds() {
         $this->paisFeeds = $this->paisFeedsController->getFeeds();
       }
 
-      private setMundoFeeds()
+      private function setMundoFeeds()
       {
         $this->mundoFeeds = $this->mundoController->getFeeds();
       }
