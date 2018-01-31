@@ -1,4 +1,6 @@
 <?php
+require_once "../db/db.php";
+
 class Feed{
     private $db;
     private $tabla;
@@ -17,7 +19,7 @@ class Feed{
     public function __construct(){
         $this->db=Conectar::conectaDb();
         $this->feedsList=array();
-        $this->tabla = "daily.Feeds"
+        $this->tabla = "daily.Feeds";
     }
 
 
