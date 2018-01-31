@@ -27,9 +27,11 @@ require_once('DataBaseFeedsController.php');
 
         $this->numDataBaseFeeds = 0;
 
-        setDataBaseFeeds();
-        setPaisFeeds();
-        setMundoFeeds();
+        $this->setDataBaseFeeds();
+        $this->setPaisFeeds();
+        $this->setMundoFeeds();
+
+        loadView();
       }
 
       // public methods for pass the data to the view
@@ -52,6 +54,11 @@ require_once('DataBaseFeedsController.php');
       public function getMundoFeeds()
       {
         return $this->mundoFeeds;
+      }
+
+      public loadView()
+      {
+         require_once('../views/index.phtml');  
       }
 
 
