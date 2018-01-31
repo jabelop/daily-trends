@@ -12,9 +12,12 @@
 <body>
   <div class="container">
     <h1>Daily Trends</h1>
+    <div class="text-right">
+        <a href="./?new=feed" class="btn btn-success">Add Feed</a>
+    </div>
       <h3>Users News</h3>
       <hr/>
-    <?php foreach($dbFeeds as $feed) { ?>
+    <?php foreach($data as $feed) { ?>
 
     <div class="well">
       <div class="media">
@@ -33,7 +36,7 @@
            </li>
 			   </ul>
          <div class="text-right">
-             <a href="#" class="btn btn-danger">Borrar</a>
+             <a href="/controllers/DeletFeedController.php" class="btn btn-danger">Delete</a>
          </div>
        </div>
     </div>

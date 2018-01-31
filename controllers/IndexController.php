@@ -56,9 +56,9 @@ require_once('DataBaseFeedsController.php');
         return $this->mundoFeeds;
       }
 
-      public function loadView($dbFeeds)
+      public function loadView($data, $view)
       {
-         require_once('views/index.phtml');
+         require_once('views/'.$view);
       }
 
 

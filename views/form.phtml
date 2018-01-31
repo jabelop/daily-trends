@@ -1,0 +1,52 @@
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Daily Trends</title>
+    <link rel="icon" href="../assest/news.ico" type="image/x-icon" sizes="16x16">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h2>New Feed</h2>
+    </div>
+    <form method="POST" action="./" enctype="multipart/form-data">
+	<!-- COMPONENT START -->
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title">
+      </div>
+      <div class="form-group">
+        <label for="body">Body:</label>
+        <input type="text" class="form-control" id="body">
+      </div>
+      <div class="form-group">
+        <label for="source">Source:</label>
+        <input type="text" class="form-control" id="source">
+      </div>
+      <div class="form-group">
+        <label for="publisher">Publisher:</label>
+        <input type="text" class="form-control" id="publisher">
+      </div>
+
+      <div class="form-group">
+    		<div class="input-group input-file" name="Fichier1">
+    			<span class="input-group-btn">
+            		<button class="btn btn-default btn-choose" type="button">Choose</button>
+        		</span>
+        		<input type="text" class="form-control" placeholder='Choose a file...' />
+        		<span class="input-group-btn">
+           			 <button class="btn btn-warning btn-reset" type="button">Reset</button>
+        		</span>
+    		</div>
+    	</div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+</body>
+<html>
