@@ -1,4 +1,4 @@
 daily-trends
 ============
 
-A Symfony project created on January 30, 2018, 4:37 pm.
+A simple Feed Aggregator PHP proyect. January 2018
