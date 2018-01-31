@@ -11,6 +11,13 @@
         <h2 class="blog-post-title">{{notice.title }}</h2>
         <p>{{notice.text}}</p>
     {%endfor%}
-   
+    <a href="{{ 
+       path( 
+          'notice'
+       ) 
+      }}">
+
+       <button class="btn btn-success">New Notice</button>
+   </a>
 </div>
 {% endblock %}
