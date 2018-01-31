@@ -3,16 +3,14 @@
 {% block body %}
 <div class="container">
     <h1>Daily Trends</h1>
-    <form action="#">
-      <div class="form-group">
-        <label for="title">Title:</label>
-        <input type="text" class="form-control" id="title">
-      </div>
-      <div class="form-group">
-        <label for="txt">Text:</label>
-        <input type="text" class="form-control" id="txt">
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form> 
+    {% block paisNotices %}
+    {% endblock %}
+    {% block mundoNotices %}
+    {% endblock %}
+    {% for notice in notices %}
+        <h2 class="blog-post-title">{{notice.title }}</h2>
+        <p>{{notice.text}}</p>
+    {%endfor%}
+   
 </div>
 {% endblock %}
