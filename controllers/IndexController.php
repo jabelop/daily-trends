@@ -17,9 +17,9 @@ require_once('DataBaseFeedsController.php');
 
       public function __construct()
       {
-        $this->paisFeedsController           = new PaisFeedsController();
-        $this->mundoFeedsController          = new MundoFeedsController();
-        $this->dataBaseFeedsController       = new DataBaseFeedsController();
+        $this->paisFeedsController     = new PaisFeedsController();
+        $this->mundoFeedsController    = new MundoFeedsController();
+        $this->dataBaseFeedsController = new DataBaseFeedsController();
 
         $this->paisFeeds      =  array();
         $this->mundoFeeds     =  array();
@@ -27,11 +27,11 @@ require_once('DataBaseFeedsController.php');
 
         $this->numDataBaseFeeds = 0;
 
-        // $this->setDataBaseFeeds();
+        $this->setDataBaseFeeds();
         // $this->setPaisFeeds();
         // $this->setMundoFeeds();
 
-        $this->loadView();
+        //$this->loadView($this->dataBaseFeeds);
       }
 
       // public methods for pass the data to the view
@@ -56,7 +56,7 @@ require_once('DataBaseFeedsController.php');
         return $this->mundoFeeds;
       }
 
-      public function loadView()
+      public function loadView($dbFeeds)
       {
          require_once('views/index.phtml');
       }
@@ -82,6 +82,7 @@ require_once('DataBaseFeedsController.php');
 
 
   }
+
 
 
 ?>

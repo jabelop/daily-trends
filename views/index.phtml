@@ -12,6 +12,34 @@
 <body>
   <div class="container">
     <h1>Daily Trends</h1>
+      <h3>Users News</h3>
+      <hr/>
+    <?php foreach($dbFeeds as $feed) { ?>
+
+    <div class="well">
+      <div class="media">
+      	<a class="pull-left" href="#">
+    		<img class="media-object" src="<?php echo $feed["image"];?>">
+  		</a>
+  		<div class="media-body">
+    		<h4 class="media-heading">
+            <?php echo $feed["title"]; ?>
+        </h4>
+          <p class="text-right"><?php echo $feed["publisher"]; ?></p>
+          <p><?php echo $feed["body"];?></p>
+          <ul class="list-inline list-unstyled">
+  			    <li>
+             <?php echo $feed["source"];?>
+           </li>
+			   </ul>
+         <div class="text-right">
+             <a href="#" class="btn btn-danger">Borrar</a>
+         </div>
+       </div>
+    </div>
+  </div>
+<?php } ?>
+
   </div>
 </body>
 <html>
