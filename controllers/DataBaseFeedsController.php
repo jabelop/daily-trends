@@ -30,6 +30,17 @@ class DataBaseFeedsController {
         return $this->numFeeds;
     }
 
+    public function postNewFeed($feed, $image)
+    {
+         $this->feedEntity->setTitle($feed['title']);
+         $this->feedEntity->setBody($feed['body']);
+         $this->feedEntity->setImage($image);
+         $this->feedEntity->setSource($feed['source']);
+         $this->feedEntity->setPublisher($feed['publisher']);
+         return $this->feedEntity->persistFeed();
+
+    }
+
     // private method for feeds intialitation
 
     private function setFeeds()
@@ -37,6 +48,7 @@ class DataBaseFeedsController {
         $this->feeds    = $this->feedEntity->getFeeds();
         $this->numFeeds = count($this->feeds);
     }
+
 
 
 

@@ -34,8 +34,9 @@
       </div>
 
       <div class="form-group">
-    		<div class="input-group input-file" name="image">
-        		<input type="file" class="form-control" placeholder='Choose a file...' />
+    		<div class="input-group input-file">
+        		<input type="file" class="form-control"
+            placeholder='Choose a file...' name="image" />
         		<span class="input-group-btn">
         		</span>
     		</div>
@@ -43,6 +44,7 @@
 
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
+    <?php if($data != null) echo $data;?>
   </div>
 </body>
 <html>

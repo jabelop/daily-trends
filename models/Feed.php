@@ -59,15 +59,6 @@ class Feed{
 
     //setter methods
 
-    public function setFeed(){
-      $consulta = "INSERT INTO $this->tabla (title, body, image, source, publisher)
-      VALUES (:title,:body, :image, :source, :publisher)";
-      $result = $db->prepare($consulta);
-      $result->execute(array(":title"=>$this->title,":body"=>$this->body,
-      ":image"=>$this->image, ":source"=>$this->source, ":publisher"=>$this->publisher));
-
-    }
-
     public function setId($id){
       $this->id = $id;
     }
@@ -91,6 +82,17 @@ class Feed{
 
     public function setPublisher($publisher){
       $this->publisher = $publisher;
+    }
+
+    // method for persist a new feed
+    public function persistFeed(){
+      $consulta = "INSERT INTO $this->tabla (title, body, image, source, publisher)
+      VALUES (:title,:body, :image, :source, :publisher)";
+      $result = $this->db->prepare($consulta);
+      return $result->execute(array(":title"=>$this->title,":body"=>$this->body,
+      ":image"=>$this->image, ":source"=>$this->source,
+      ":publisher"=>$this->publisher));
+
     }
 }
 ?>
