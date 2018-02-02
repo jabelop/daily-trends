@@ -25,11 +25,20 @@ class DataBaseFeedsController {
         return $this->feeds;
     }
 
+    public function getFeed($id)
+    {
+      foreach ($this->feeds as $feed) {
+        if ($feed['id'] == $id) return $feed;
+      }
+    }
+
     public function getNumFeeds()
     {
         return $this->numFeeds;
     }
 
+
+    // method for post a  new feed
     public function postNewFeed($feed, $image)
     {
          $this->feedEntity->setTitle($feed['title']);
@@ -39,6 +48,11 @@ class DataBaseFeedsController {
          $this->feedEntity->setPublisher($feed['publisher']);
          return $this->feedEntity->persistFeed();
 
+    }
+
+    //method for delete a feed from the data base
+    public function deleteFeed($id) {
+      return $this->feedEntity->deleteFeed($id);
     }
 
     // private method for feeds intialitation

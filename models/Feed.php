@@ -32,6 +32,16 @@ class Feed{
         return $this->feedsList;
     }
 
+    public function getFeed($id){
+      $consulta = "SELECT * FROM $tabla WHERE id=?";
+      $resultado = $this->db->prepare($consulta);
+      $resultado->execute(array($id));
+        foreach ($resultado as $value) {
+            $this->feedsList[] = $value;
+        }
+        return $this->feedsList;
+    }
+
     public function getId(){
       return $this->id;
     }
@@ -93,6 +103,14 @@ class Feed{
       ":image"=>$this->image, ":source"=>$this->source,
       ":publisher"=>$this->publisher));
 
+    }
+
+    //method for delete a feeds
+    public function deleteFeed($id)
+    {
+      $consulta = "DELETE FROM $this->tabla WHERE id=?";
+      $result = $this->db->prepare($consulta);
+      return $result->execute(array($id));
     }
 }
 ?>

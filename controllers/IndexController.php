@@ -31,7 +31,6 @@ require_once('DataBaseFeedsController.php');
         // $this->setPaisFeeds();
         // $this->setMundoFeeds();
 
-        //$this->loadView($this->dataBaseFeeds);
       }
 
       // public methods for pass the data to the view
@@ -69,24 +68,34 @@ require_once('DataBaseFeedsController.php');
 
       }
 
+      //method for delete a feed
+      public function deleteFeed($id)
+      {
+        $name = $this->dataBaseFeedsController->getFeed($id)['image'];
+        if ($this->dataBaseFeedsController->deleteFeed($id))
+        {
+          return $this->deleteImageFile($name);
+        }
+        return;
+      }
 
-      // method for save the file image in the server
-      function saveImageFile($file, $name){
-          $ruta = '/'.$name;
 
-          //comprobamos si este archivo existe para no volverlo a copiar.
-          //pero si quieren pueden obviar esto si no es necesario.
-          //o pueden darle otro nombre para que no sobreescriba el actual.
-          if (!file_exists($ruta)){
+      // method for save the file image from the server
+      public function saveImageFile($file, $name){
+        $path = 'assets/images/'.$name;
 
-              //aqui movemos el archivo desde la ruta temporal a nuestra ruta
-              //usamos la variable $resultado para almacenar el resultado del
-              // proceso de mover el archivo almacenara true o false
-              $resultado = @move_uploaded_file($file, $ruta);
-              return $resultado;
-          }else {
-              return false;
-          }
+        //aqui movemos el archivo desde la ruta temporal a nuestra ruta
+        //usamos la variable $resultado para almacenar el resultado del
+        // proceso de mover el archivo almacenara true o false
+        $result = move_uploaded_file($file, $path);
+        return $result;
+      }
+
+      //method for remove a file image from the server
+      private function deleteImageFile($name){
+        $path = 'assets/images/'.$name;
+        return unlink($path);
+
       }
 
 
