@@ -1,6 +1,6 @@
 <?php
 require_once("controllers/IndexController.php");
-$controller = new IndexController();
+$controller = new IndexController(5);
 if(isset($_GET['new']))
 {
   $controller->loadView(null, "form.phtml");
@@ -21,15 +21,12 @@ else if (isset($_POST['title']))
     else
     {
       $error = 'data base file save error';
-      $controller->loadView($error, "form.phtml");
+      $controller->loadView($error,null,null, "form.phtml");
     }
   }else
   {
     $controller->postFeed($_POST,null);
   }
-  // $feedsFromDB  = $controller->getDataBaseFeeds();
-  //
-  // $controller->loadView($feedsFromDB, "index.phtml");
   header("Location: ./");
 
 }
@@ -39,8 +36,12 @@ else if (isset($_POST['delete']))
   header("Location: ./");
 }
 else {
-  $feedsFromDB  = $controller->getDataBaseFeeds();
-  $controller->loadView($feedsFromDB, "index.phtml");
+  $feedsPais   = array();
+  $feedsPais   = $controller->getPaisFeeds();
+  $mundoFeeds  = array();
+  $mundoFeeds  = $controller->getMundoFeeds();
+  $feedsFromDB = $controller->getDataBaseFeeds();
+  $controller->loadView($feedsPais, $mundoFeeds, $feedsFromDB, "index.phtml");
 
 }
 ?>

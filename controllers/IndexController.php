@@ -3,33 +3,36 @@
 require_once('PaisFeedsController.php');
 require_once('MundoFeedsController.php');
 require_once('DataBaseFeedsController.php');
+
+
   //main controller for index
   class IndexController
   {
-      // properties for the different types of  feeds
+      // properties for the different types of feeds
 
-      private $paisFeeds, $mundoFeeds, $dataBaseFeeds, $numDataBaseFeeds;
+      private $paisFeeds;
+      private $mundoFeeds;
+      private $dataBaseFeeds;
 
       // properties for the controllers
       private $paisFeedsController;
       private $mundoFeedsController;
       private $dataBaseFeedsController;
 
-      public function __construct()
+      public function __construct($numberOfScrapingFeeds)
       {
-        $this->paisFeedsController     = new PaisFeedsController();
-        $this->mundoFeedsController    = new MundoFeedsController();
+        $this->paisFeedsController     = new PaisFeedsController($numberOfScrapingFeeds);
+        $this->mundoFeedsController    = new MundoFeedsController($numberOfScrapingFeeds);
         $this->dataBaseFeedsController = new DataBaseFeedsController();
 
         $this->paisFeeds      =  array();
         $this->mundoFeeds     =  array();
-        $this->dataBaseFeeds =  array();
+        $this->dataBaseFeeds  =  array();
 
-        $this->numDataBaseFeeds = 0;
 
         $this->setDataBaseFeeds();
-        // $this->setPaisFeeds();
-        // $this->setMundoFeeds();
+        $this->setPaisFeeds();
+        $this->setMundoFeeds();
 
       }
 
@@ -45,17 +48,23 @@ require_once('DataBaseFeedsController.php');
         return $this->numDataBaseFeeds;
       }
 
+      // public function getPaisFeeds()
+      // {
+      //   return $this->paisFeeds;
+      // }
+
       public function getPaisFeeds()
       {
         return $this->paisFeeds;
       }
+
 
       public function getMundoFeeds()
       {
         return $this->mundoFeeds;
       }
 
-      public function loadView($data, $view)
+      public function loadView($dataPais, $dataMundo, $dataDataBase, $view)
       {
         require_once('views/'.$view);
       }
@@ -104,17 +113,16 @@ require_once('DataBaseFeedsController.php');
 
       private function setDataBaseFeeds()
       {
-        $this->dataBaseFeeds    = $this->dataBaseFeedsController->getFeeds();
-        $this->numDataBaseFeeds = $this->dataBaseFeedsController->getNumFeeds();
+        $this->dataBaseFeeds = $this->dataBaseFeedsController->getFeeds();
       }
 
       private function setPaisFeeds() {
-        $this->paisFeeds = $this->paisFeedsController->getFeeds();
+        $this->paisFeeds = $this->paisFeedsController->setFeeds();
       }
 
       private function setMundoFeeds()
       {
-        $this->mundoFeeds = $this->mundoController->getFeeds();
+        $this->mundoFeeds = $this->mundoFeedsController->setFeeds();
       }
 
 

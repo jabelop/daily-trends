@@ -15,9 +15,67 @@
     <div class="text-right">
         <a href="./?new=feed" class="btn btn-success">Add Feed</a>
     </div>
-      <h3>Users News</h3>
+      <h2>EL PAÍS</h2>
+        <?php $i=0; foreach($dataPais as $feedPais) { ?>
+
+        <div id="d<?php echo $i;?>"class="well">
+          <div class="media">
+          	<a class="pull-left" href="#">
+        		<img class="media-object" src="<?php echo $feedPais["image"];?>">
+      		</a>
+      		<div class="media-body">
+        		<h3>
+                <?php echo $feedPais["title"]; ?>
+            </h3>
+              <p class="text-right"><?php echo $feedPais["publisher"]; ?></p>
+              <p><?php echo $feedPais["body"];?></p>
+              <ul class="list-inline list-unstyled">
+      			    <li>
+                 <?php echo $feedPais["source"]; $i++;?>
+               </li>
+    			   </ul>
+             <div class="text-right">
+               <button type="submit" class="btn btn-danger"
+               onclick="hide(<?php echo $i;?>)">
+                 Delete
+               </button>
+             </div>
+           </div>
+        </div>
+      </div>
+    <?php } ?>
+    <h2>EL MUNDO</h2>
+      <?php foreach($dataMundo as $feedMundo) { $i++;?>
+
+      <div id="d<?php echo $i;?>" class="well">
+        <div class="media">
+          <a class="pull-left" href="#">
+          <img class="media-object" src="<?php echo $feedMundo["image"];?>">
+        </a>
+        <div class="media-body">
+          <h3 >
+              <?php echo $feedMundo["title"]; ?>
+          </h3>
+            <p class="text-right"><?php echo $feedMundo["publisher"]; ?></p>
+            <p><?php echo $feedMundo["body"];?></p>
+            <ul class="list-inline list-unstyled">
+              <li>
+               <?php echo $feedMundo["source"];?>
+             </li>
+           </ul>
+           <div class="text-right">
+             <button type="submit" class="btn btn-danger"
+             onclick="document.getElementById('d<?php echo $i;?>').style.display='none';">
+               Delete
+             </button>
+           </div>
+         </div>
+      </div>
+    </div>
+  <?php } ?>
+      <h2>Users News</h2>
       <hr/>
-    <?php foreach($data as $feed) { ?>
+    <?php foreach($dataDataBase as $feed) { ?>
 
     <div class="well">
       <div class="media">
@@ -25,9 +83,9 @@
     		<img class="media-object" src="assets/images/<?php echo $feed["image"];?>">
   		</a>
   		<div class="media-body">
-    		<h4 class="media-heading">
+    		<h3 class="media-heading">
             <?php echo $feed["title"]; ?>
-        </h4>
+        </h3>
           <p class="text-right"><?php echo $feed["publisher"]; ?></p>
           <p><?php echo $feed["body"];?></p>
           <ul class="list-inline list-unstyled">
@@ -49,5 +107,10 @@
 <?php } ?>
 
   </div>
+  <script type="text/javascript">
+    function hide(id){
+       document.getElementById('d'+id).style.display='none';
+    }
+  </script>
 </body>
 <html>
