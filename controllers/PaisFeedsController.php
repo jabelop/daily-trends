@@ -33,7 +33,7 @@ class paisFeedsController
       $this->feeds[$i]['title']    = $document->find('h1', 0)->plaintext;
       $this->feeds[$i]['body'] = $document->find('div.articulo-cuerpo', 0)->plaintext;
       $this->feeds[$i]['image']     = "https:".$document->find('img', 1)->src;
-      $this->feeds[$i]['source']    = "El país";
+      $this->feeds[$i]['source']    = "El País";
       $this->feeds[$i]['publisher'] =  $document->find('meta', 5)->content;
       $i++;
     }

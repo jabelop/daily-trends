@@ -34,14 +34,24 @@ else if (isset($_POST['delete']))
 {
   $controller->deleteFeed($_POST['delete']);
   header("Location: ./");
-}
-else {
+}else if(isset($_GET['pais']))
+{
+  // El Pais feeds AJAX request
   $feedsPais   = array();
   $feedsPais   = $controller->getPaisFeeds();
+  print_r(json_encode($feedsPais));
+
+}else if(isset($_GET['mundo']))
+{
+  // El Mundo feeds AJAX request
   $mundoFeeds  = array();
   $mundoFeeds  = $controller->getMundoFeeds();
+  print_r(json_encode($mundoFeeds));
+
+}
+else {
   $feedsFromDB = $controller->getDataBaseFeeds();
-  $controller->loadView($feedsPais, $mundoFeeds, $feedsFromDB, "index.phtml");
+  $controller->loadView($feedsFromDB, "index.phtml");
 
 }
 ?>

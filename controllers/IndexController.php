@@ -64,7 +64,7 @@ require_once('DataBaseFeedsController.php');
         return $this->mundoFeeds;
       }
 
-      public function loadView($dataPais, $dataMundo, $dataDataBase, $view)
+      public function loadView($dataDataBase, $view)
       {
         require_once('views/'.$view);
       }

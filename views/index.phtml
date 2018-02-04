@@ -4,9 +4,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Daily Trends</title>
-    <link rel="icon" href="assest/news.ico" type="image/x-icon" sizes="16x16">
+    <link rel="icon" href="assets/news.ico" type="image/x-icon" sizes="16x16">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="libs/jquery.tmpl.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 <body>
@@ -15,65 +16,15 @@
     <div class="text-right">
         <a href="./?new=feed" class="btn btn-success">Add Feed</a>
     </div>
-      <h2>EL PAÍS</h2>
-        <?php $i=0; foreach($dataPais as $feedPais) { ?>
-
-        <div id="d<?php echo $i;?>"class="well">
-          <div class="media">
-          	<a class="pull-left" href="#">
-        		<img class="media-object" src="<?php echo $feedPais["image"];?>">
-      		</a>
-      		<div class="media-body">
-        		<h3>
-                <?php echo $feedPais["title"]; ?>
-            </h3>
-              <p class="text-right"><?php echo $feedPais["publisher"]; ?></p>
-              <p><?php echo $feedPais["body"];?></p>
-              <ul class="list-inline list-unstyled">
-      			    <li>
-                 <?php echo $feedPais["source"]; $i++;?>
-               </li>
-    			   </ul>
-             <div class="text-right">
-               <button type="submit" class="btn btn-danger"
-               onclick="hide(<?php echo $i;?>)">
-                 Delete
-               </button>
-             </div>
-           </div>
-        </div>
-      </div>
-    <?php } ?>
-    <h2>EL MUNDO</h2>
-      <?php foreach($dataMundo as $feedMundo) { $i++;?>
-
-      <div id="d<?php echo $i;?>" class="well">
-        <div class="media">
-          <a class="pull-left" href="#">
-          <img class="media-object" src="<?php echo $feedMundo["image"];?>">
-        </a>
-        <div class="media-body">
-          <h3 >
-              <?php echo $feedMundo["title"]; ?>
-          </h3>
-            <p class="text-right"><?php echo $feedMundo["publisher"]; ?></p>
-            <p><?php echo $feedMundo["body"];?></p>
-            <ul class="list-inline list-unstyled">
-              <li>
-               <?php echo $feedMundo["source"];?>
-             </li>
-           </ul>
-           <div class="text-right">
-             <button type="submit" class="btn btn-danger"
-             onclick="document.getElementById('d<?php echo $i;?>').style.display='none';">
-               Delete
-             </button>
-           </div>
-         </div>
-      </div>
+    <div id="el-pais">
+      <h2> El País feeds</h2>
+      <h3 id="loading-pais">Loading <img src="assets/loading.gif"></h3>
     </div>
-  <?php } ?>
-      <h2>Users News</h2>
+    <div id="el-mundo">
+      <h2> El Mundo feeds</h2>
+      <h3 id="loading-mundo">Loading <img src="assets/loading.gif"></h3>
+    </div>
+      <h2>Users feeds</h2>
       <hr/>
     <?php foreach($dataDataBase as $feed) { ?>
 
@@ -108,6 +59,42 @@
 
   </div>
   <script type="text/javascript">
+    "use strict";
+    (function(){
+      function ajaxRequest(newspaper){
+        $.ajax({
+          url : './index.php?'+newspaper,
+          type : 'GET',
+          dataType : 'json',
+          success : function(data) {
+            console.log('datos', data);
+              if (data[0].source === 'El País')
+              {
+                $('#loading-pais').hide();
+              }else {
+                $('#loading-mundo').hide();
+              }
+
+              $.get('./views/template.feeds.html', function(template){
+                console.log("template", template);
+                $.tmpl(template, data).appendTo('#el-'+newspaper);
+            });
+          },
+          error : function(xhr, status) {
+              console.log('request error',status);
+          },
+
+          complete : function(xhr, status) {
+              console.log('request done',status);
+          }
+        });
+      }
+
+
+    ajaxRequest('pais');
+    ajaxRequest('mundo');
+
+  })();
     function hide(id){
        document.getElementById('d'+id).style.display='none';
     }

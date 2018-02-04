@@ -1,0 +1,27 @@
+
+<h2>${newspaper}</h2>
+  <div class="well">
+    <div class="media">
+      <a class="pull-left" href="#">
+      <img class="media-object" src="${image}">
+    </a>
+    <div class="media-body">
+      <h3>
+          ${title}
+      </h3>
+        <p class="text-right">${publisher}</p>
+        <p>${body}</p>
+        <ul class="list-inline list-unstyled">
+          <li>
+           ${source}
+         </li>
+       </ul>
+       <div class="text-right">
+         <button type="submit" class="btn btn-danger"
+                 onclick="$(this).parent().parent().parent().parent().hide();">
+           Delete
+         </button>
+       </div>
+     </div>
+  </div>
+</div>
