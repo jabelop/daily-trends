@@ -40,7 +40,7 @@ class FeedsService {
         die;
     }
 
-    // load the xl dom document into the variable
+    // load the xml dom document into the variable
     $xmlDom = simplexml_import_dom($dom);
 
     $links = array();
